@@ -35,17 +35,17 @@ public class CARDS2 extends JFrame {
 	public CARDS2() {
 		crearCarpetaCartas();
 		setTitle("CARDS 2");
-		setSize(568, 600);
+		setSize(568, 500);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		getContentPane().setBackground(Color.black);
 		setLayout(new BorderLayout());
 
-		cargarCartasGuardadas(); // carga al iniciar
+		cargarCartasGuardadas();
 
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
-				guardarCartasAlSalir(); // guarda al cerrar
+				guardarCartasAlSalir();
 			}
 		});
 
@@ -69,31 +69,85 @@ public class CARDS2 extends JFrame {
 
 		panelPrincipal.add(textPane);
 
-		dineroLabel = new JLabel("DINERO: " + dinero + "€");
+		dineroLabel = new JLabel("DINERO: " + String.format("%.2f", dinero) + "€");
 		dineroLabel.setForeground(Color.WHITE);
-		dineroLabel.setFont(new Font("Monospaced", Font.PLAIN, 14));
-		dineroLabel.setBounds(10, 160, 300, 30);
+		dineroLabel.setFont(new Font("Monospaced", Font.BOLD, 16));
+		dineroLabel.setBounds(30, 170, 400, 30);
 		panelPrincipal.add(dineroLabel);
 
+		Font botonFont = new Font("Monospaced", Font.BOLD, 22);
+
 		JButton tiendaBtn = new JButton("TIENDA");
-		tiendaBtn.setBounds(200, 200, 150, 40);
+		tiendaBtn.setBounds(50, 200, 450, 50);
+		tiendaBtn.setFont(botonFont);
+		tiendaBtn.setBackground(Color.BLACK);
+		tiendaBtn.setForeground(Color.GREEN);
+		tiendaBtn.setBorder(BorderFactory.createLineBorder(Color.GREEN, 3));
+		tiendaBtn.setFocusPainted(false);
 		tiendaBtn.addActionListener(e -> mostrarTienda());
 		panelPrincipal.add(tiendaBtn);
 
+		JButton sbcBtn = new JButton("SBC");
+		sbcBtn.setBounds(50, 260, 140, 50);
+		sbcBtn.setFont(botonFont);
+		sbcBtn.setBackground(Color.BLACK);
+		sbcBtn.setForeground(Color.MAGENTA);
+		sbcBtn.setBorder(BorderFactory.createLineBorder(Color.MAGENTA, 3));
+		sbcBtn.setFocusPainted(false);
+		sbcBtn.addActionListener(e -> {
+		});
+		panelPrincipal.add(sbcBtn);
+
+		JButton registroBtn = new JButton("REGISTRO");
+		registroBtn.setBounds(210, 260, 140, 50);
+		registroBtn.setFont(botonFont);
+		registroBtn.setBackground(Color.BLACK);
+		registroBtn.setForeground(Color.ORANGE);
+		registroBtn.setBorder(BorderFactory.createLineBorder(Color.ORANGE, 3));
+		registroBtn.setFocusPainted(false);
+		registroBtn.addActionListener(e -> mostrarRegistro());
+		panelPrincipal.add(registroBtn);
+
+		JButton draftBtn = new JButton("DRAFT");
+		draftBtn.setBounds(370, 260, 130, 50);
+		draftBtn.setFont(botonFont);
+		draftBtn.setBackground(Color.BLACK);
+		draftBtn.setForeground(Color.CYAN);
+		draftBtn.setBorder(BorderFactory.createLineBorder(Color.CYAN, 3));
+		draftBtn.setFocusPainted(false);
+		draftBtn.addActionListener(e -> {
+		});
+		panelPrincipal.add(draftBtn);
+
+		JButton casinoBtn = new JButton("CASINO");
+		casinoBtn.setBounds(50, 320, 450, 50);
+		casinoBtn.setFont(botonFont);
+		casinoBtn.setBackground(Color.BLACK);
+		casinoBtn.setForeground(Color.RED);
+		casinoBtn.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+		casinoBtn.setFocusPainted(false);
+		casinoBtn.addActionListener(e -> mostrarCasino());
+		panelPrincipal.add(casinoBtn);
+
 		JButton sobresBtn = new JButton("MIS SOBRES");
-		sobresBtn.setBounds(200, 260, 150, 40);
+		sobresBtn.setBounds(50, 390, 220, 55);
+		sobresBtn.setFont(botonFont);
+		sobresBtn.setBackground(Color.BLACK);
+		sobresBtn.setForeground(Color.CYAN);
+		sobresBtn.setBorder(BorderFactory.createLineBorder(Color.CYAN, 3));
+		sobresBtn.setFocusPainted(false);
 		sobresBtn.addActionListener(e -> mostrarMisSobres());
 		panelPrincipal.add(sobresBtn);
 
 		JButton cartasBtn = new JButton("MIS CARTAS");
-		cartasBtn.setBounds(200, 320, 150, 40);
+		cartasBtn.setBounds(280, 390, 220, 55);
+		cartasBtn.setFont(botonFont);
+		cartasBtn.setBackground(Color.BLACK);
+		cartasBtn.setForeground(Color.WHITE);
+		cartasBtn.setBorder(BorderFactory.createLineBorder(Color.WHITE, 3));
+		cartasBtn.setFocusPainted(false);
 		cartasBtn.addActionListener(e -> mostrarMisCartas());
 		panelPrincipal.add(cartasBtn);
-
-		JButton registroBtn = new JButton("REGISTRO");
-		registroBtn.setBounds(360, 320, 150, 40); // a la derecha de "MIS CARTAS"
-		registroBtn.addActionListener(e -> mostrarRegistro());
-		panelPrincipal.add(registroBtn);
 
 		add(panelPrincipal, BorderLayout.CENTER);
 	}
@@ -132,6 +186,13 @@ public class CARDS2 extends JFrame {
 	public void mostrarRegistro() {
 		getContentPane().removeAll();
 		getContentPane().add(new RegistroPanel(this));
+		revalidate();
+		repaint();
+	}
+
+	public void mostrarCasino() {
+		getContentPane().removeAll();
+		getContentPane().add(new CasinoPanel(this));
 		revalidate();
 		repaint();
 	}

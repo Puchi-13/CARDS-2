@@ -168,7 +168,6 @@ public class MisCartasPanel extends JPanel {
 		repaint();
 	}
 
-	// --- Clase para guardar las cartas por calidad ---
 	public static class CartaGuardada implements Serializable {
 		private static final long serialVersionUID = 1L;
 		public final Map<String, Set<Carta>> cartas = new HashMap<>();
