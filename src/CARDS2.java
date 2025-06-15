@@ -2,14 +2,19 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -35,6 +40,9 @@ public class CARDS2 extends JFrame {
 	public CARDS2() {
 		crearCarpetaCartas();
 		setTitle("CARDS 2");
+
+		setIconImage(redimensionarIcono("icono_original.png", 64, 64).getImage());
+
 		setSize(568, 500);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
@@ -283,5 +291,16 @@ public class CARDS2 extends JFrame {
 	public void sumarDinero(double cantidad) {
 		this.dinero += cantidad;
 		actualizarDineroLabel();
+	}
+
+	public ImageIcon redimensionarIcono(String ruta, int ancho, int alto) {
+		try {
+			BufferedImage original = ImageIO.read(new File(ruta));
+			Image redimensionada = original.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH);
+			return new ImageIcon(redimensionada);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }
