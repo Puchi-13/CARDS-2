@@ -33,7 +33,7 @@ public class CasinoPanel extends JPanel {
 		juegos.add(crearBoton("🐕 Galgos", () -> mostrarGalgos()));
 		juegos.add(crearBoton("🎡 Ruleta", () -> juegoNoImplementado()));
 		juegos.add(crearBoton("🃏 Blackjack", () -> juegoNoImplementado()));
-		juegos.add(crearBoton("🪙 Coinflip", () -> juegoNoImplementado()));
+		juegos.add(crearBoton("💰 Coinflip", () -> juegoNoImplementado()));
 		juegos.add(crearBoton("💣 Bomba", () -> juegoNoImplementado()));
 
 		add(juegos, BorderLayout.CENTER);

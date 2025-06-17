@@ -80,7 +80,7 @@ public class CARDS2 extends JFrame {
 		dineroLabel = new JLabel("DINERO: " + String.format("%.2f", dinero) + "€");
 		dineroLabel.setForeground(Color.WHITE);
 		dineroLabel.setFont(new Font("Monospaced", Font.BOLD, 16));
-		dineroLabel.setBounds(30, 170, 400, 30);
+		dineroLabel.setBounds(10, 160, 400, 30);
 		panelPrincipal.add(dineroLabel);
 
 		Font botonFont = new Font("Monospaced", Font.BOLD, 22);
@@ -120,8 +120,8 @@ public class CARDS2 extends JFrame {
 		draftBtn.setBounds(370, 260, 130, 50);
 		draftBtn.setFont(botonFont);
 		draftBtn.setBackground(Color.BLACK);
-		draftBtn.setForeground(Color.CYAN);
-		draftBtn.setBorder(BorderFactory.createLineBorder(Color.CYAN, 3));
+		draftBtn.setForeground(Color.BLUE);
+		draftBtn.setBorder(BorderFactory.createLineBorder(Color.BLUE, 3));
 		draftBtn.setFocusPainted(false);
 		draftBtn.addActionListener(e -> {
 		});
@@ -215,7 +215,7 @@ public class CARDS2 extends JFrame {
 		Color color = ColoresCalidad.obtener(carta.getCalidad());
 
 		JTextArea ascii = new JTextArea(carta.getAscii());
-		ascii.setFont(new Font("Consolas", Font.PLAIN, 13));
+		ascii.setFont(new Font("Courier New", Font.PLAIN, 8)); // Más ancha visualmente
 		ascii.setMargin(new Insets(5, 10, 5, 10));
 		ascii.setForeground(color);
 		ascii.setBackground(Color.BLACK);
@@ -302,5 +302,11 @@ public class CARDS2 extends JFrame {
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+	private final Image icono = new ImageIcon("icono_original.png").getImage();
+
+	public Image getIcono() {
+		return icono;
 	}
 }

@@ -148,25 +148,32 @@ public class MisSobresPanel extends JPanel {
 
 		Color color = ColoresCalidad.obtener(carta.getCalidad());
 
-		// ⬇️ Espaciado horizontal entre caracteres del ASCII
 		JTextArea ascii = new JTextArea(carta.getAscii());
-		ascii.setFont(new Font("Consolas", Font.PLAIN, 13));
+		ascii.setFont(new Font("Courier New", Font.PLAIN, 8));
 		ascii.setForeground(color);
 		ascii.setBackground(Color.BLACK);
 		ascii.setEditable(false);
 		ascii.setFocusable(false);
 		ascii.setMargin(new Insets(5, 10, 5, 10));
+		ascii.setLineWrap(false);
+		ascii.setWrapStyleWord(false);
 
-		JPanel centro = new JPanel(new GridBagLayout());
-		centro.setBackground(Color.BLACK);
-		centro.add(ascii);
+		// ⬇️ Envolver en panel para centrar
+		JPanel contenedor = new JPanel(new GridBagLayout());
+		contenedor.setBackground(Color.BLACK);
+		contenedor.add(ascii); // centrado por defecto en GridBagLayout
+
+		JScrollPane scroll = new JScrollPane(contenedor, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		scroll.setBorder(null);
+		scroll.getViewport().setBackground(Color.BLACK);
 
 		JLabel info = new JLabel(carta.getResumenTitulo(), SwingConstants.CENTER);
 		info.setFont(new Font("Monospaced", Font.BOLD, 16));
 		info.setForeground(color);
 		info.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-		ventanaCarta.add(new JScrollPane(centro), BorderLayout.CENTER);
+		ventanaCarta.add(scroll, BorderLayout.CENTER);
 		ventanaCarta.add(info, BorderLayout.SOUTH);
 		ventanaCarta.setVisible(true);
 	}

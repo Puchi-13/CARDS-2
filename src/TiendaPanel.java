@@ -3,10 +3,12 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Image;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -63,7 +65,7 @@ public class TiendaPanel extends JPanel {
 			precio.setHorizontalAlignment(SwingConstants.RIGHT);
 			precio.setPreferredSize(new Dimension(100, 30));
 
-			JButton probBtn = crearBotonEstilizado("PROB.", e -> new VentanaProbabilidades(sobre));
+			JButton probBtn = crearBotonEstilizado("PROB.", e -> new VentanaProbabilidades(sobre, mainWindow));
 			probBtn.setPreferredSize(new Dimension(80, 30));
 
 			JButton comprarBtn = crearBotonEstilizado("COMPRAR", e -> {
@@ -104,5 +106,11 @@ public class TiendaPanel extends JPanel {
 		sur.setBackground(Color.BLACK);
 		sur.add(volverBtn);
 		add(sur, BorderLayout.SOUTH);
+	}
+
+	private final Image icono = new ImageIcon("icono_original.png").getImage();
+
+	public Image getIcono() {
+		return icono;
 	}
 }

@@ -13,11 +13,13 @@ public class VentanaProbabilidades extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	public VentanaProbabilidades(Sobre sobre) {
+	public VentanaProbabilidades(Sobre sobre, CARDS2 main) {
 		setTitle("Probabilidades de " + sobre.getNombre());
 		setSize(400, 400);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+		setIconImage(main.getIcono()); // ← Aplicar icono personalizado
 
 		JTextPane area = new JTextPane();
 		area.setEditable(false);
