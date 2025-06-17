@@ -38,7 +38,7 @@ public class CARDS2 extends JFrame {
 	private MisCartasPanel.CartaGuardada cartaGuardada;
 
 	public CARDS2() {
-		crearCarpetaCartas();
+
 		setTitle("CARDS 2");
 
 		setIconImage(redimensionarIcono("icono_original.png", 64, 64).getImage());
@@ -268,12 +268,6 @@ public class CARDS2 extends JFrame {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	private void crearCarpetaCartas() {
-		File carpeta = new File("CartasObtenidas");
-		if (!carpeta.exists())
-			carpeta.mkdirs();
 	}
 
 	public double getDinero() {
