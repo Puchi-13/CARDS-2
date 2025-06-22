@@ -11,11 +11,11 @@ public class Carta implements Serializable {
 	private final int hobbies;
 	private final int popularidad;
 	private final int bondad;
-	private final int carisma;
+	private final int suerte;
 	private final int momento;
 
 	public Carta(String calidad, String ascii, String nombre, int media, int estudios, int hobbies, int popularidad,
-			int bondad, int carisma, int momento) {
+			int bondad, int suerte, int momento) {
 		this.calidad = calidad;
 		this.ascii = ascii;
 		this.nombre = nombre;
@@ -24,7 +24,7 @@ public class Carta implements Serializable {
 		this.hobbies = hobbies;
 		this.popularidad = popularidad;
 		this.bondad = bondad;
-		this.carisma = carisma;
+		this.suerte = suerte;
 		this.momento = momento;
 	}
 
@@ -60,8 +60,8 @@ public class Carta implements Serializable {
 		return bondad;
 	}
 
-	public int getCarisma() {
-		return carisma;
+	public int getSuerte() {
+		return suerte;
 	}
 
 	public int getMomento() {
