@@ -11,6 +11,8 @@ import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.RenderingHints;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
@@ -33,6 +35,7 @@ import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
+import javax.swing.UIManager;
 
 public class CARDS2 extends JFrame {
 
@@ -62,7 +65,7 @@ public class CARDS2 extends JFrame {
 		});
 
 		fondoLabel = new JLabel(new ImageIcon("img/fondo.gif"));
-		fondoLabel.setBounds(0, 0, 568, 500);
+		fondoLabel.setBounds(0, 0, 568, 600);
 		fondoLabel.setLayout(null);
 		add(fondoLabel);
 
@@ -86,11 +89,11 @@ public class CARDS2 extends JFrame {
 		tituloAnimado.setBounds(0, 30, 520, 100);
 		panelPrincipal.add(tituloAnimado);
 
-		Color[] coloresBase = { Color.cyan, Color.pink, Color.magenta };
+		Color[] coloresBase = { Color.white, new Color(143, 143, 143) };
 		final int[] index = { 0 };
 		final float[] paso = { 0.0f };
 
-		new Timer(30, e -> {
+		new Timer(50, e -> {
 			Color c1 = coloresBase[index[0]];
 			Color c2 = coloresBase[(index[0] + 1) % coloresBase.length];
 			int r = (int) (c1.getRed() + paso[0] * (c2.getRed() - c1.getRed()));
@@ -114,7 +117,7 @@ public class CARDS2 extends JFrame {
 
 		Font popThin;
 		try {
-			popThin = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Nabla-Regular-VariableFont_EDPT,EHLT.ttf"))
+			popThin = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/LexendZetta-VariableFont_wght.ttf"))
 					.deriveFont(80f);
 			GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(popThin);
 		} catch (Exception e) {
@@ -122,32 +125,31 @@ public class CARDS2 extends JFrame {
 			popThin = new Font("SansSerif", Font.BOLD, 64);
 		}
 
-		Font botonFont = popThin.deriveFont(22f);
+		Font botonFont = UIManager.getFont("Label.font").deriveFont(36f);
 
 		// BOTÓN TIENDA
-		JButton tiendaBtn = new JButton("TIENDA");
-		tiendaBtn.setBounds(50, 200, 450, 50);
-		tiendaBtn.setFont(botonFont);
-		tiendaBtn.setForeground(Color.GREEN);
-		tiendaBtn.setBackground(new Color(0, 0, 0, 100));
-		tiendaBtn.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2, true));
+		JButton tiendaBtn = new JButton("🛒");
+		tiendaBtn.setBounds(50, 200, 140, 140);
+		tiendaBtn.setFont(new Font("SansSerif", Font.BOLD, 48));
+		tiendaBtn.setForeground(new Color(0, 255, 255));
+		tiendaBtn.setBackground(new Color(80, 0, 100));
+		tiendaBtn.setBorder(BorderFactory.createLineBorder(new Color(150, 0, 200), 2)); // ⬅️ esquinas rectas
 		tiendaBtn.setFocusPainted(false);
-		tiendaBtn.setContentAreaFilled(false);
-		tiendaBtn.setOpaque(false);
 		tiendaBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		tiendaBtn.setContentAreaFilled(true);
+		tiendaBtn.setOpaque(true);
 		tiendaBtn.addActionListener(e -> mostrarTienda());
-		tiendaBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-			public void mouseEntered(java.awt.event.MouseEvent evt) {
-				tiendaBtn.setForeground(Color.WHITE);
-				tiendaBtn.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2, true));
+
+		tiendaBtn.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				tiendaBtn.setBackground(new Color(110, 0, 160));
 			}
 
-			public void mouseExited(java.awt.event.MouseEvent evt) {
-				tiendaBtn.setForeground(Color.GREEN);
-				tiendaBtn.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2, true));
+			public void mouseExited(MouseEvent e) {
+				tiendaBtn.setBackground(new Color(80, 0, 100));
 			}
 		});
-		panelPrincipal.add(tiendaBtn);
+		// panelPrincipal.add(tiendaBtn);
 
 		// BOTÓN SBC
 		JButton sbcBtn = new JButton("SBC");
@@ -173,7 +175,7 @@ public class CARDS2 extends JFrame {
 		});
 		sbcBtn.addActionListener(e -> {
 		});
-		panelPrincipal.add(sbcBtn);
+		// panelPrincipal.add(sbcBtn);
 
 		// BOTÓN REGISTRO
 		JButton registroBtn = new JButton("REGISTRO");
@@ -181,7 +183,7 @@ public class CARDS2 extends JFrame {
 		registroBtn.setFont(botonFont);
 		registroBtn.setForeground(Color.ORANGE);
 		registroBtn.setBackground(new Color(0, 0, 0, 100));
-		registroBtn.setBorder(BorderFactory.createLineBorder(Color.ORANGE, 2, true));
+		registroBtn.setBorder(BorderFactory.createLineBorder(Color.ORANGE, 2, false));
 		registroBtn.setFocusPainted(false);
 		registroBtn.setContentAreaFilled(false);
 		registroBtn.setOpaque(false);
@@ -198,7 +200,7 @@ public class CARDS2 extends JFrame {
 			}
 		});
 		registroBtn.addActionListener(e -> mostrarRegistro());
-		panelPrincipal.add(registroBtn);
+		// panelPrincipal.add(registroBtn);
 
 		// BOTÓN DRAFT
 		JButton draftBtn = new JButton("DRAFT");
@@ -224,7 +226,7 @@ public class CARDS2 extends JFrame {
 		});
 		draftBtn.addActionListener(e -> {
 		});
-		panelPrincipal.add(draftBtn);
+		// panelPrincipal.add(draftBtn);
 
 		// BOTÓN CASINO
 		JButton casinoBtn = new JButton("CASINO");
@@ -249,7 +251,7 @@ public class CARDS2 extends JFrame {
 			}
 		});
 		casinoBtn.addActionListener(e -> mostrarCasino());
-		panelPrincipal.add(casinoBtn);
+		// panelPrincipal.add(casinoBtn);
 
 		// BOTÓN MIS SOBRES
 		JButton sobresBtn = new JButton("MIS SOBRES");
@@ -274,7 +276,7 @@ public class CARDS2 extends JFrame {
 			}
 		});
 		sobresBtn.addActionListener(e -> mostrarMisSobres());
-		panelPrincipal.add(sobresBtn);
+		// panelPrincipal.add(sobresBtn);
 
 		// BOTÓN MIS CARTAS
 		JButton cartasBtn = new JButton("MIS CARTAS");
@@ -299,7 +301,8 @@ public class CARDS2 extends JFrame {
 			}
 		});
 		cartasBtn.addActionListener(e -> mostrarMisCartas());
-		panelPrincipal.add(cartasBtn);
+
+		// panelPrincipal.add(cartasBtn);
 
 		add(fondoLabel, BorderLayout.CENTER);
 	}
@@ -522,7 +525,12 @@ public class CARDS2 extends JFrame {
 		try {
 			BufferedImage original = ImageIO.read(new File(ruta));
 			Image redimensionada = original.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH);
-			return new ImageIcon(redimensionada);
+			BufferedImage buffered = new BufferedImage(ancho, alto, BufferedImage.TYPE_INT_ARGB);
+			Graphics2D g2d = buffered.createGraphics();
+			g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+			g2d.drawImage(redimensionada, 0, 0, null);
+			g2d.dispose();
+			return new ImageIcon(buffered);
 		} catch (IOException e) {
 			e.printStackTrace();
 			return null;
@@ -574,6 +582,36 @@ public class CARDS2 extends JFrame {
 
 			g2.dispose();
 		}
+	}
+
+	public JButton crearBotonModerno(String emoji, Color fondo, Color fondoHover, int fontSize, int width, int height,
+			Runnable accion) {
+		JButton boton = new JButton(emoji);
+		boton.setFont(new Font("SansSerif", Font.BOLD, fontSize));
+		boton.setForeground(Color.WHITE);
+		boton.setBackground(fondo);
+		boton.setFocusPainted(false);
+		boton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		boton.setContentAreaFilled(true);
+		boton.setOpaque(true);
+		boton.setBorder(BorderFactory.createLineBorder(fondo.brighter(), 2, true));
+		boton.setBounds(0, 0, width, height);
+
+		// Acción al hacer clic
+		boton.addActionListener(e -> accion.run());
+
+		// Hover efecto
+		boton.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseEntered(java.awt.event.MouseEvent e) {
+				boton.setBackground(fondoHover);
+			}
+
+			public void mouseExited(java.awt.event.MouseEvent e) {
+				boton.setBackground(fondo);
+			}
+		});
+
+		return boton;
 	}
 
 }
